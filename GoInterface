@@ -1,0 +1,42 @@
+package main
+
+import "fmt"
+
+// TODO: Define an interface named ElectronicDevice with a `PowerOn` method to simulate turning the device on. 
+type ElectronicDevice interface {
+    PowerOn()
+}
+//       Use 'fmt.Println' statements for simulation (e.g., print "Device is now on.")
+
+// TODO: Define a struct named Computer that embeds another struct for basic device functionality and override its method to simulate booting up by not only turning on but also loading the operating system.
+type BasicDevice struct{
+    state string
+}
+
+func (bd BasicDevice) PowerOn(){
+    fmt.Println("Booting.... Turning on....")
+}
+
+type Computer struct {
+    BasicDevice
+}
+
+func (c Computer) PowerOn(){
+    c.BasicDevice.PowerOn()
+    fmt.Println("Loading the Operating System...")
+}
+
+func main() {
+    // TODO: Create an instance of a Computer and call its method to turn on and demonstrate loading the operating system.
+    // Expected output: Device is now on. Loading operating system.
+    MyComputer := Computer{ BasicDevice: BasicDevice{state: "off"}}
+    bd := BasicDevice{state: "off"}
+    //MyComputer.PowerOn()
+    var ed ElectronicDevice
+    
+    ed = bd
+    ed.PowerOn()
+    
+    ed = MyComputer
+    ed.PowerOn()
+}
