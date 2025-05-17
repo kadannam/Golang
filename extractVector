@@ -1,0 +1,28 @@
+package main
+
+import (
+    "fmt"
+)
+
+func extractElements(dataVector []string, indices []int) []string {
+    // TODO: Return a subset of the vector based on the provided indices
+    
+    res := []string{}
+    for _, index := range indices {
+        res = append(res, dataVector[index])    
+    }
+    return res
+}
+
+func main() {
+    vector := []string{"Go", "11", "true", "Nested Vector", "42"}
+
+    indices := []int{1, -1, 4}
+    subVector := extractElements(vector, indices)
+
+    // Print the resulting subset vector
+    for _, element := range subVector {
+        fmt.Print(element, " ")
+    }
+    fmt.Println()  // Expected output: 11 Nested Vector 42
+}
