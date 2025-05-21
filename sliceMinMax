@@ -1,0 +1,33 @@
+package main
+
+import (
+    "fmt"
+    "sort"
+)
+
+func findMaxMinLengths(dataSlice []string) []int {
+    // TODO: Return the lengths of the longest and shortest strings in the slice
+    //Sort the slice based on length such that the smallest len string will pop to the first element of slice
+    // and largest len string will be at the end of the slice.
+    sort.Slice(dataSlice,  func(i,j int) bool {
+        return len(dataSlice[i]) < len(dataSlice[j])
+    })
+    l := len(dataSlice)
+    // Return the length of the first element of the sorted slice == min lenghth
+    // Return length of the last element of the sorted slice == max length 
+    return []int{ len(dataSlice[0]),len(dataSlice[l-1]) }
+    
+}
+
+func main() {
+    // Define a slice with various string lengths
+    dataSlice := []string{"Hi", "Hello", "Bonjour", "Cześć"}
+
+    // TODO: Use the function to get the longest and shortest string lengths and print them
+    minmax := findMaxMinLengths(dataSlice)
+    // Expected output:
+    // Max string length: 7
+    // Min string length: 2
+    fmt.Println( "Min string length: ", minmax[0])
+    fmt.Println( "Max string length: ", minmax[1])
+}
